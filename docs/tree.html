@@ -19,16 +19,13 @@
   <style>
     .bootstrap {
       font-size: 12px;
-      background-fill: #cccccc;
+      background: #cccccc;
     }
 
     .cluster-text {
       padding: 0.25em;
+      font-size: 24px;
       text-align: center;
-    }
-
-    .node text {
-      font-size: 18px;
     }
 
     .branch {
@@ -107,8 +104,15 @@
             // make nodes and branches not selectable
             'collapsible': false,
             // turn off the menu on internal nodes
+            'transitions': false,
+            // turn off d3 animations
+            'reroot': false,
+            'hide': false,
+            'show-scale': false,
+            'align-tips': false,
+            'brush': false,
           })
-          .size([320,640])
+          .size([640,640])
           .font_size(18)
           .style_edges(edgeStyler)
           .style_nodes(nodeStyler)
@@ -128,6 +132,11 @@
     // tree.spacing_x(50).spacing_y(100);
 
     tree.placenodes().layout();
+
+    tree.options({
+            'transitions': true
+            // turn on d3 animations
+          });
 
     applyAnnotation(clustering);
 
